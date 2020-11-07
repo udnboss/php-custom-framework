@@ -1,0 +1,32 @@
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<h1>Contact Us</h1>
+<div class="col-lg-6 col-sm-12">
+    <p>
+        Have a suggestion to help us deliver better value, or a correction that you would like to point out? Then share it with us. Are you interested in advertising with us, guest post, have something to offer, or want to share? You are welcome.
+    </p>
+    <form id="frmContact" action="" method="POST" novalidate="novalidate">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="enter your name here" title="Please enter your name" class="form-control required" aria-required="true" required>            
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" placeholder="enter your email address here" title="Please enter your email address" class="form-control required email" aria-required="true" required>
+        </div>
+        <div class="form-group">
+            <label for="comment-content">Message</label>
+            <textarea id="comment-content" class="form-control" name="content" placeholder="enter your message here"></textarea>
+        </div>    
+        <div class="form-group">
+            <div class="my-3 mx-1">
+               <div class="g-recaptcha" data-sitekey="YOURSITEKEY"></div>    
+            </div>                 
+        </div>
+        <div class="form-group">
+            <div id="mail-status"></div>
+        </div>
+        <div class="form-group">
+            <button type="Submit" id="send-message" class="mx-1 btn btn-primary">Send Message</button>
+        </div>
+    </form>
+</div>

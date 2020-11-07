@@ -1,0 +1,73 @@
+<div class="row">
+    <div class="col-lg-8">
+
+        
+        <div class="row">
+            <div class="col-lg-5">
+                <img class="w-100 rounded" src="{image}" rel="noreferrer nofollow" />
+            </div>
+            <div class="col-lg-7">
+                <h1>{title}</h1>
+                <h4 class="text-muted"><small>{tags}</small></h4>
+                <hr />
+                <div>
+                    <small>
+                        <span><i class="fa fa-star text-warning"></i> {rating}</span>
+                        on <time datetime="{date}" pubdate="pubdate">{formatted_date}</time>
+                    </small>
+
+                </div>
+                <div>
+                    <span class="badge badge-info"><i class="fa fa-bookmark"></i> {category}</span>
+                    <br /><span class="badge badge-primary"><i class="fa fa-calendar"></i> {date}</span>
+                    <br /><span class="badge badge-success"><i class="fa fa-clock"></i> {time} Minutes</span>
+                    <br /><span class="badge badge-danger"><i class="fa fa-fire"></i> {kcal} KCalories</span>
+                    <br /><span class="badge badge-secondary"><i class="fa fa-signal"></i> {difficulty}</span>
+                </div>
+            </div>
+
+        </div>
+        <div class="my-5">
+            {carousel}
+        </div>
+        <div>
+            <h2>Ingredients</h2>
+            <table class="table">
+                <tbody>
+                    {ingredients}
+                </tbody>
+            </table>
+        </div>
+        <div class="my-5">
+            <h2>Nurition Facts</h2>
+            <table class="table">
+                <tbody>
+                    {nutritions}
+                </tbody>
+            </table>
+        </div>
+        <div class="my-5">
+            <h2>Directions</h2>
+            {directions}
+        </div>
+        <div class="my-5">
+            <h2>Images</h2>
+            <div class="row">
+                {images}
+            </div>
+            
+        </div>
+    </div>
+    <div class="col-lg-4">
+        {similar}
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-8" id="comments">
+        <h2>Comments</h2>
+        {comments}
+    </div>
+    <div class="col-lg-4">
+
+    </div>
+</div>

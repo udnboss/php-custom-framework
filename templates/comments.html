@@ -1,0 +1,100 @@
+<hr/>
+<div class="my-5">
+
+</div>
+
+<div>
+    {bottom-recommendations-ad}
+</div>
+<div class="mt-5">
+    {articles}
+</div>
+
+<div style="height:70px;"></div>
+<h3 class="text-center mt-5"><i class="fas fa-comment fa-fw"></i> {discussion}</h3>
+<h6 class="text-muted">{share-comments}</h6>
+<div style="display:{display_name_edit}">
+    <input value="{name}" type="text" class="form-control" id="comment_name" maxlength="20" placeholder="Your Name" />
+</div>
+<div class="my-2">
+    <textarea class="form-control" rows="2" id="comment_text" maxlength="4000" placeholder="{your-comment}"></textarea>
+</div> 
+<div class="text-right">
+    <button id="submit_comment" disabled="disabled" class="btn btn-primary">{comment}</button>
+</div>   
+<div id="comment_list" class="my-3">
+    {data}
+</div>
+
+<script async>
+    var reply_to_id = null;
+
+    $(function(){
+        $('#comment_text').on('keyup', function(){
+            var comment = $('#comment_text').val();            
+            var disable = comment.trim().length < 3;
+            var submit = $('#submit_comment').prop('disabled', disable);
+        });
+
+        $(document).on( 'click','.reply_comment', function(){
+            reply_to_id = $(this).parents('.comment').data("comment");
+            var name = $(this).parents('.comment').data("name");
+            $('#comment_text').val("@" + name + " ");
+            $('#comment_text').focus();
+            $('html, body').animate({
+                    scrollTop: $("#comment_text").offset().top - 200
+                }, 500);
+        });
+
+        $('#submit_comment').on('click', function(){
+            var submit = $(this);
+            submit.prop("disabled", true);
+            var name = $('#comment_name').val();
+            var comment = $('#comment_text').val();
+            var url = '{url}';
+            $('#comment_list').fadeTo(1000, 0.1, function(){
+                $.post('/comment', {url: url, name: name, comment: comment, reply_to_id: reply_to_id}, function(data){                   
+
+                        //data = JSON.parse(data);
+                        if(data.success == 1)
+                        {
+                            //refresh the comments.
+                            $('#comment_list').html(data.html);
+                            $('#comment_text').val("");
+                            
+                        }
+
+                        $('#comment_list').fadeTo(1000, 1.0);
+                    });
+                });
+            });
+
+        $(document).on( 'click','.vote_comment', function(){
+            var button = $(this);
+            button.prop("disabled", true);
+
+            var comment_div = button.parents('.comment');
+            var comment_id = comment_div.data("comment");
+            var vote = button.data("vote") > 0 ? 1 : -1;
+            
+            var url = '{url}';
+
+            $('#comment_list').fadeTo(1000, 0.1, function(){
+                $.post('/comment-vote', {comment_id: comment_id, vote: vote, url: url}, function(data){
+                
+                        //data = JSON.parse(data);
+                        if(data.success == 1)
+                        {
+                            //refresh the comments.
+                            $('#comment_list').html(data.html);
+                            $('#comment_text').val("");
+                            
+                        }
+                        $('#comment_list').fadeTo(1000, 1.0);
+                    });
+                });
+            });
+            
+    });
+</script>
+    
